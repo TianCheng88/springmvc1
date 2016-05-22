@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <mvc:annotation-driven />
+    <!-- 配置Handler -->
+    <bean name="/queryItems.action" class="cn.itcast.ssm.controller.ItemsCoontroller1"/>
+    <!-- 处理器映射器
+    将bean的name作为url进行查找，需要在配置Handler时指定beanname（url）
+     -->
+    <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
+    <!-- 处理器适配器
+    所有处理器适配器都实现HandlerAdapter接口
+     -->
+<bean class="org.springframework.web.servlet.handler.SimpleServletHandlerAdapter"/>
+<!-- 配置视图解析器 
+解析jsp，默认使用jstl
+-->
+<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"></bean>
+</beans>
