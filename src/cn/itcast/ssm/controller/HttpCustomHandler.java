@@ -1,28 +1,23 @@
 package cn.itcast.ssm.controller;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.Controller;
+import org.springframework.web.HttpRequestHandler;
 
 import cn.itcast.ssm.po.Items;
 
-/**
- * <p> Title:ItemsController1</p>
- * <p>Description:实现controller接口的处理器</p>
- * @author 田竞成
- *
- */
-public class ItemsCoontroller1 implements Controller {
+public class HttpCustomHandler implements HttpRequestHandler {
 
 	@Override
-	public ModelAndView handleRequest(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
+	public void handleRequest(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	//调用service查找数据库，查询商品列表，这里使用静态数据模拟
 		List<Items> itemsList=new ArrayList<Items>();
 		//向list中填充静态数据
 		Items items1=new Items();
@@ -37,11 +32,8 @@ public class ItemsCoontroller1 implements Controller {
 		items2.setDetails("iphone6苹果手机！");
 		itemsList.add(items1);
 		itemsList.add(items2);
-		//返回ModelAndView
-		ModelAndView modelAndView=new ModelAndView();
-		modelAndView.addObject("itemsList",itemsList);
-		modelAndView.setViewName("jsp/Items/itemslist.jsp");
-		return modelAndView;
+		request.setAttribute("itemsList", itemsList);
+		request.getRequestDispatcher("jsp/Items/itemslist.jsp").forward(request, response);
 	}
 
 }

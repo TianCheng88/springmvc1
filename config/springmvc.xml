@@ -10,15 +10,33 @@
 
     <mvc:annotation-driven />
     <!-- 配置Handler -->
-    <bean name="/queryItems.action" class="cn.itcast.ssm.controller.ItemsCoontroller1"/>
+    <bean id="ItemsCoontroller1"  name="/queryItems.action" class="cn.itcast.ssm.controller.ItemsCoontroller1"/>
+    <bean id="HttpCustomHandler" class="cn.itcast.ssm.controller.HttpCustomHandler"></bean>
+    
+    
     <!-- 处理器映射器
     将bean的name作为url进行查找，需要在配置Handler时指定beanname（url）
      -->
     <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
+    <!-- 简单URL映射 -->
+    <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+    <!-- 集合配制URL映射 -->
+    <property name="mappings">
+    <props>
+    <!-- 对 url为/queryItems1.action的进行映射，处理器为：ItemsCoontroller1对应的Class-->
+    <prop key="/queryItems1.action"> ItemsCoontroller1 </prop>
+    <prop key="/httpHandler1.action">HttpCustomHandler</prop>
+    </props>
+    </property>
+    </bean>
+    
     <!-- 处理器适配器
     所有处理器适配器都实现HandlerAdapter接口
      -->
-<bean class="org.springframework.web.servlet.handler.SimpleServletHandlerAdapter"/>
+<bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>
+<!-- 另一个非注解HandlerAdapter -->
+<bean class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter"/>
+
 <!-- 配置视图解析器 
 解析jsp，默认使用jstl
 -->
