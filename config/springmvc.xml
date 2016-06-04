@@ -1,18 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:context="http://www.springframework.org/schema/context"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="
         http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/mvc
-        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context  
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        ">
 
-    <mvc:annotation-driven />
-    <!-- 配置Handler -->
-    <bean id="ItemsCoontroller1"  name="/queryItems.action" class="cn.itcast.ssm.controller.ItemsCoontroller1"/>
-    <bean id="HttpCustomHandler" class="cn.itcast.ssm.controller.HttpCustomHandler"></bean>
+ 
+    <!-- 将Handler注册到Spring容器中 -->
     
+    
+    <bean id="ItemsCoontroller1"  name="/queryItems.action" class="cn.itcast.ssm.controller.ItemsCoontroller1"/>
+    <bean id="HttpCustomHandler" class="cn.itcast.ssm.controller.httphandler.HttpCustomHandler"></bean>
+    <bean class="cn.itcast.ssm.controller.ItemsAnnotationController"></bean>
+    <!-- 在实际开发中可以使用更简化的配置，组件扫描 -->
+    <context:component-scan base-package="cn.itcast.ssm.controller"></context:component-scan>
     
     <!-- 处理器映射器
     将bean的name作为url进行查找，需要在配置Handler时指定beanname（url）
@@ -36,6 +44,16 @@
 <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/>
 <!-- 另一个非注解HandlerAdapter -->
 <bean class="org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter"/>
+
+
+<!-- 注解的 -->
+<!-- 注解的映射器 -->
+<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"></bean>
+<!-- 注解的适配器 -->
+<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"></bean>
+   
+   <!-- mvc 注解驱动，默认添加映射器与适配器等其他相关，开发时使用其即可。 -->
+  <!--  <mvc:annotation-driven /> -->
 
 <!-- 配置视图解析器 
 解析jsp，默认使用jstl

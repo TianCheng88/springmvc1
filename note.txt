@@ -1,1 +1,14 @@
 06 over..
+如果没有在springmvc.xml中配制处理器映射器、适配器、视图解析器等组件，则会使用默认的：
+org.springframework.web.servlet下的DispatcherServlet.properties
+
+08 注解的
+注意：
+处理器映射器
+在3.1之前，用  org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping
+
+在3.1之后，用 org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping
+
+适配器：
+在3.1 之前，用org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter
+在3.1 之后，用org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter

@@ -3,30 +3,20 @@ package cn.itcast.ssm.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.Controller;
 
 import cn.itcast.ssm.po.Items;
 
-/**
- * <p> Title:ItemsController1</p>
- * <p>Description:实现controller接口的处理器</p>
- * @author 田竞成
- *
- */
-public class ItemsCoontroller1 implements Controller {
-
-	@Override
-	public ModelAndView handleRequest(HttpServletRequest arg0, HttpServletResponse arg1) throws Exception {
-		// TODO Auto-generated method stub
-	//调用service查找数据库，查询商品列表，这里使用静态数据模拟
+@Controller
+public class ItemsAnnotationController {
+	
+	@RequestMapping("/queryItems")
+	public ModelAndView queryItems()
+	{
 		List<Items> itemsList=new ArrayList<Items>();
 		//向list中填充静态数据
-		
-		
 		Items items1=new Items();
 		items1.setId(1);
 		items1.setName("联想笔记本");

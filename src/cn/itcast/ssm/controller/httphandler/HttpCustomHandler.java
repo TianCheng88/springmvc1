@@ -1,4 +1,4 @@
-package cn.itcast.ssm.controller;
+package cn.itcast.ssm.controller.httphandler;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,7 +33,10 @@ public class HttpCustomHandler implements HttpRequestHandler {
 		itemsList.add(items1);
 		itemsList.add(items2);
 		request.setAttribute("itemsList", itemsList);
-		request.getRequestDispatcher("jsp/Items/itemslist.jsp").forward(request, response);
+		//request.getRequestDispatcher("jsp/Items/itemslist.jsp").forward(request, response);
+		
+		response.setContentType("application/json;charset=utf-8");
+		response.getWriter().write("[\"apple\",\"orange\",\"hha\"]");
 	}
 
 }
