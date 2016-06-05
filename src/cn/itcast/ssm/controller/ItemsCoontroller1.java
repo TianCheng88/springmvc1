@@ -42,7 +42,7 @@ public class ItemsCoontroller1 implements Controller {
 		//·µ»ØModelAndView
 		ModelAndView modelAndView=new ModelAndView();
 		modelAndView.addObject("itemsList",itemsList);
-		modelAndView.setViewName("jsp/Items/itemslist.jsp");
+		modelAndView.setViewName("itemslist");
 		return modelAndView;
 	}
 

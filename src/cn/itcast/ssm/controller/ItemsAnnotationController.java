@@ -9,10 +9,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import cn.itcast.ssm.po.Items;
 
-@Controller
+@Controller("/list")
 public class ItemsAnnotationController {
 	
-	@RequestMapping("/queryItems")
+	@RequestMapping("/queryItems_haha")
 	public ModelAndView queryItems()
 	{
 		List<Items> itemsList=new ArrayList<Items>();
@@ -32,7 +32,7 @@ public class ItemsAnnotationController {
 		//·µ»ØModelAndView
 		ModelAndView modelAndView=new ModelAndView();
 		modelAndView.addObject("itemsList",itemsList);
-		modelAndView.setViewName("jsp/Items/itemslist.jsp");
+		modelAndView.setViewName("itemslist");
 		return modelAndView;
 	}
 

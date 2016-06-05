@@ -3,22 +3,18 @@
     xmlns:mvc="http://www.springframework.org/schema/mvc"
     xmlns:context="http://www.springframework.org/schema/context"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="
-        http://www.springframework.org/schema/beans
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd
-        http://www.springframework.org/schema/context  
-        http://www.springframework.org/schema/context/spring-context-3.0.xsd
-        ">
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
  
     <!-- 将Handler注册到Spring容器中 -->
-    
-    
     <bean id="ItemsCoontroller1"  name="/queryItems.action" class="cn.itcast.ssm.controller.ItemsCoontroller1"/>
     <bean id="HttpCustomHandler" class="cn.itcast.ssm.controller.httphandler.HttpCustomHandler"></bean>
-    <bean class="cn.itcast.ssm.controller.ItemsAnnotationController"></bean>
+ <!--    <bean class="cn.itcast.ssm.controller.ItemsAnnotationController"></bean> -->
     <!-- 在实际开发中可以使用更简化的配置，组件扫描 -->
     <context:component-scan base-package="cn.itcast.ssm.controller"></context:component-scan>
     
@@ -58,5 +54,9 @@
 <!-- 配置视图解析器 
 解析jsp，默认使用jstl
 -->
-<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"></bean>
+<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+<!-- prefix,suffix分别用于配置返回url的前缀和后缀 -->
+<property name="prefix" value="/jsp/Items/" />
+<property name="suffix" value=".jsp" />
+</bean>
 </beans>
